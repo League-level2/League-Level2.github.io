@@ -240,7 +240,7 @@
   <p class="c2 c4"><span class="c3"></span></p>
   <p class="c2"><span class="c3">8. Add to the update and draw methods so the enemies get updated and drawn.</span></p>
   <p class="c2 c4"><span class="c3"></span></p>
-  <p class="c2"><span class="c3">9. In the ObjectManager class, create a method called manageEnemies. You can come up with your own algorithm for spawning new enemies or just copy the method below. If you use the method below, you will need to create two new member variables. One is a long called ememyTimer that can be initilized to 0. The other is an int called enemySpawnTime. This is the delay before new enemies arrive. The value is in milliseconds, so 1000 = 1 second.</span></p>
+  <p class="c2"><span class="c3">9. In the ObjectManager class, create a method called manageEnemies. You can come up with your own algorithm for spawning new enemies or just copy the method below. If you use the method below, you will need to create two new member variables. One is a long called enemyTimer that can be initilized to 0. The other is an int called enemySpawnTime. This is the delay before new enemies arrive. The value is in milliseconds, so 1000 = 1 second.</span></p>
   <p class="c2 c4"><span class="c3"></span></p>
   <p class="c2"><span class="c8">public void manageEnemies(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(System.currentTimeMillis() - enemyTimer &gt;= enemySpawnTime){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addAlien(new Alien(new Random().nextInt(LeagueInvaders.WIDTH), 0, 50, 50));</span></p>
   <p
