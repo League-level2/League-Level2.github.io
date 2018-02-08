@@ -255,21 +255,19 @@
   <p class="c3 c5"><span class="c1"></span></p>
   <p class="c3"><span class="c1">8. Add code that iterates through all the projectiles and all the aliens. If any of them collide, set their isAlive variables to false.</span></p>
   <p class="c3 c5"><span class="c1"></span></p>
-  <p class="c3"><span class="c1">9. create a method called purgeObjects. This method should use a standard for-loop to iterate through the aliens and projectiles. If any of them are not alive, then remove them from the list.</span></p>
+  <p class="c3"><span class="c1">9. Go to the GamePanel class. In the updateGameState method, use your ObjectManager object to call the checkCollision method and the purgeObjects method.</span></p>
   <p class="c3 c5"><span class="c1"></span></p>
-  <p class="c3"><span class="c1">10. Go to the GamePanel class. In the updateGameState method, use your ObjectManager object to call the checkCollision method and the purgeObjects method.</span></p>
+  <p class="c3"><span class="c1">10. Run your program. Do the aliens and ship disappear when they are supposed to?</span></p>
   <p class="c3 c5"><span class="c1"></span></p>
-  <p class="c3"><span class="c1">11. Run your program. Do the aliens and ship disappear when they are supposed to?</span></p>
+  <p class="c3"><span class="c1">11. In the updateGameState method, create an if statement that checks the isAlive variable of your Rocketship object. If it is false, set the currentState equal to END_STATE</span></p>
   <p class="c3 c5"><span class="c1"></span></p>
-  <p class="c3"><span class="c1">12. In the updateGameState method, create an if statement that checks the isAlive variable of your Rocketship object. If it is false, set the currentState equal to END_STATE</span></p>
+  <p class="c3"><span class="c1">12. In the ObjectManager class, create a member integer called score and initialize it to zero.</span></p>
   <p class="c3 c5"><span class="c1"></span></p>
-  <p class="c3"><span class="c1">13. In the ObjectManager class, create a member integer called score and initialize it to zero.</span></p>
+  <p class="c3"><span class="c1">13. Create a getter for the score variable.</span></p>
   <p class="c3 c5"><span class="c1"></span></p>
-  <p class="c3"><span class="c1">14. Create a getter for the score variable.</span></p>
+  <p class="c3"><span class="c1">14. Increment the score by one every time an enemy is killed by a projectile.</span></p>
   <p class="c3 c5"><span class="c1"></span></p>
-  <p class="c3"><span class="c1">15. Increment the score by one every time an enemy is killed by a projectile.</span></p>
-  <p class="c3 c5"><span class="c1"></span></p>
-  <p class="c3"><span class="c1">16. Use the getScore method in the ObjectManager class to update the player&#39;s score.</span></p>
+  <p class="c3"><span class="c1">15. Use the getScore method in the ObjectManager class to update the player&#39;s score.</span></p>
   <p class="c3 c5"><span class="c1"></span></p>
   <p class="c3 c5"><span class="c1"></span></p>
 </body>
