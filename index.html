@@ -8,5 +8,42 @@
     <a href="https://league-level2.github.io/league_invaders_contents">League Invaders Mega Recipe</a> <br>
     <a href="https://league-level2.github.io/project_info">Level 2 Project Info</a> <br>
     <a href="https://league-level2.github.io/game_demos">Level 2 Past Projects Hall of Fame</a> <br>
+	<a href='./ExportarunnableJAR.html'>Click here to learn how to export your finished game to a runnable program.</a><br>
+	<a href='./github_inst/UploadGametoGithub.html'>Click here to learn how to upload your game to Github.</a>
   </div>
+<div id='demo'></div>
+<script>
+
+function fileUpload(){
+	var inFile = document.getElementById("inputFile");
+	var txt = "";
+	if ('files' in inFile) {
+        if (inFile.files.length == 0) {
+            txt = "Select one or more files.";
+        } else {
+            for (var i = 0; i < inFile.files.length; i++) {
+                txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                var file = inFile.files[i];
+                if ('name' in file) {
+                    txt += "name: " + file.name + "<br>";
+                }
+                if ('size' in file) {
+                    txt += "size: " + file.size + " bytes <br>";
+                }
+            }
+        }
+    } 
+    else {
+        if (inFile.value == "") {
+            txt += "Select one or more files.";
+        } else {
+            txt += "The files property is not supported by your browser!";
+            txt  += "<br>The path of the selected file: " + inFile.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+        }
+    }
+    document.getElementById("demo").innerHTML = txt;
+
+}
+
+</script>
 </html>
