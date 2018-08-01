@@ -57,7 +57,7 @@ questions[0].correctAnswers[0]=2;
 questions[1] = new Question();
 questions[1].number=2;
 questions[1].type="FILL_IN";
-questions[1].question="Fill&nbspin&nbspthe&nbspblank&nbspto&nbspprint&nbspthe&nbsplast&nbspelement&nbspof&nbspthe&nbsparray.<br><br>String[]&nbsplist&nbsp=&nbspnew&nbspString[totalStrings];<br>for(int&nbspi&nbsp=&nbsp0;&nbspi&nbsp&lt&nbsplist.length;&nbspi++){<br>&nbsp&nbsplist[i]&nbsp=&nbsp\"\"&nbsp+&nbspnew&nbspRandom().nextInt();<br>}<br>System.out.println(___________);<br>";
+questions[1].question="Fill&nbspin&nbspthe&nbspblank&nbspto&nbspprint&nbspthe&nbsplast&nbspelement&nbspof&nbspthe&nbsparray.<br><br>//list is initialized prior to this.<br>for(int&nbspi&nbsp=&nbsp0;&nbspi&nbsp&lt&nbsplist.length;&nbspi++){<br>&nbsp&nbsplist[i]&nbsp=&nbsp\"\"&nbsp+&nbspnew&nbspRandom().nextInt();<br>}<br>System.out.println(___________);<br>";
 questions[1].correctAnswers="list[list.length-1]";
 questions[2] = new Question();
 questions[2].number=3;
