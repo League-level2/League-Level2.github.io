@@ -1,8 +1,32 @@
 <html>
+<head>
+            <title>League Level 2 - Arrays Checkpoint</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://league-central.github.io/curriculum/style/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <style>
+            #quiz {
+                margin-left:50px;    
+            }
+            #nav {
+                margin-left:50px;    
+                
+            }
+            button {background-color:yellow; border-radius: 3px; font-size: 125%;
+           }
+        </style>
+        <script src="https://league-central.github.io/curriculum/script/headerAndFooter.js"></script>
+</head>
 <div id='header'>
 	<center> <h1>
-		Arrays
-	</h1></center>
+		Arrays Checkpoint
+	</h1>
+    <br>
+    <hr>
+    <br>
+    </center>
 </div>
 <div id='quiz'></div>
 <div id='nav'></div>
@@ -40,14 +64,14 @@ window.onload = function(){
 		navDiv.innerHTML += "<button onclick='navigateTo("+i+")'>"+(i + 1)+"</button>";
 	}
 	navDiv.innerHTML += "<br><br>";
-	navDiv.innerHTML += "<button onclick='submitQuiz()'>Submit Quiz</button><br>";
+	navDiv.innerHTML += "<button class='button' onclick='submitQuiz()'>Submit Quiz</button><br>";
 }
 
 function buildQuiz(){
-	questions[0] = new Question();
+questions[0] = new Question();
 questions[0].number=1;
 questions[0].type="MULT_ANS";
-questions[0].question="What&nbspis&nbspthe&nbspoutput&nbspof&nbspthe&nbspfollowing&nbspcode?<br><br>int[]&nbsparr&nbsp=&nbspnew&nbspint[6];<br>arr[0]&nbsp=&nbsp5;<br>arr[1]&nbsp=&nbsp3;<br>arr[2]&nbsp=&nbsp9;<br>arr[3]&nbsp=&nbsp0;<br>arr[4]&nbsp=&nbsp5;<br>System.out.println(arr[2]);";
+questions[0].question="What&nbspis&nbspthe&nbspoutput&nbspof&nbspthe&nbspfollowing&nbspcode?<br><p class='code'>int[]&nbsparr&nbsp=&nbspnew&nbspint[6];<br>arr[0]&nbsp=&nbsp5;<br>arr[1]&nbsp=&nbsp3;<br>arr[2]&nbsp=&nbsp9;<br>arr[3]&nbsp=&nbsp0;<br>arr[4]&nbsp=&nbsp5;<br>System.out.println(arr[2]);</>";
 questions[0].choices[0]="5";
 questions[0].choices[1]="3";
 questions[0].choices[2]="9";
@@ -57,7 +81,7 @@ questions[0].correctAnswers[0]=2;
 questions[1] = new Question();
 questions[1].number=2;
 questions[1].type="FILL_IN";
-questions[1].question="Fill&nbspin&nbspthe&nbspblank&nbspto&nbspprint&nbspthe&nbsplast&nbspelement&nbspof&nbspthe&nbsparray.<br><br>//list is initialized prior to this.<br>for(int&nbspi&nbsp=&nbsp0;&nbspi&nbsp&lt&nbsplist.length;&nbspi++){<br>&nbsp&nbsplist[i]&nbsp=&nbsp\"\"&nbsp+&nbspnew&nbspRandom().nextInt();<br>}<br>System.out.println(___________);<br>";
+questions[1].question="Fill&nbspin&nbspthe&nbspblank&nbspto&nbspprint&nbspthe&nbsplast&nbspelement&nbspof&nbspthe&nbsparray.<br><br>//list is initialized prior to this.<p class='code'> for(int&nbspi&nbsp=&nbsp0;&nbspi&nbsp&lt&nbsplist.length;&nbspi++){<br>&nbsp&nbsplist[i]&nbsp=&nbsp\"\"&nbsp+&nbspnew&nbspRandom().nextInt();<br>}<br>System.out.println(___________);</p>";
 questions[1].correctAnswers="list[list.length-1]";
 questions[2] = new Question();
 questions[2].number=3;
@@ -79,16 +103,16 @@ questions[3] = new Question();
 questions[3].number=4;
 questions[3].type="SING_ANS";
 questions[3].question="Which&nbspof&nbspthe&nbspfollowing&nbspfor&nbsploops&nbspwill&nbspprint&nbspan&nbsparray&nbspbackwards?";
-questions[3].choices[0]="for(int&nbspi&nbsp=&nbsp0;&nbspi&nbsp&lt&nbsparr.length;&nbspi++){<br>&nbsp&nbspSystem.out.println(arr[i]);<br>}";
-questions[3].choices[1]="arr.reversePrint();";
-questions[3].choices[2]="for(int&nbspi&nbsp=&nbsparr.length;&nbspi&nbsp>=&nbsp0;&nbspi--){<br>&nbsp&nbspSystem.out.println(arr[i]);<br>}";
-questions[3].choices[3]="for(int&nbspi&nbsp=&nbsparr.length&nbsp-&nbsp1;&nbspi&nbsp>=&nbsp0;&nbspi--){<br>&nbsp&nbspSystem.out.println(arr[i]);<br>}";
-questions[3].choices[4]="for(int&nbspi&nbsp=&nbsparr.end();&nbspi&nbsp!=&nbsparr.begin();&nbspi--){<br>&nbsp&nbspSystem.out.println(arr[i]);<br>}";
+questions[3].choices[0]="<p class='code'>for(int&nbspi&nbsp=&nbsp0;&nbspi&nbsp&lt&nbsparr.length;&nbspi++){<br>&nbsp&nbspSystem.out.println(arr[i]);<br>}</p>";
+questions[3].choices[1]="<p class='code'>arr.reversePrint();</p>";
+questions[3].choices[2]="<p class='code'>for(int&nbspi&nbsp=&nbsparr.length;&nbspi&nbsp>=&nbsp0;&nbspi--){<br>&nbsp&nbspSystem.out.println(arr[i]);<br>}</p>";
+questions[3].choices[3]="<p class='code'>for(int&nbspi&nbsp=&nbsparr.length&nbsp-&nbsp1;&nbspi&nbsp>=&nbsp0;&nbspi--){<br>&nbsp&nbspSystem.out.println(arr[i]);<br>}</p>";
+questions[3].choices[4]="<p class='code'>for(int&nbspi&nbsp=&nbsparr.end();&nbspi&nbsp!=&nbsparr.begin();&nbspi--){<br>&nbsp&nbspSystem.out.println(arr[i]);<br>}</p>";
 questions[3].correctAnswers=3;
 questions[4] = new Question();
 questions[4].number=5;
 questions[4].type="SING_ANS";
-questions[4].question="What&nbspis&nbspthe&nbspoutput&nbspof&nbspthe&nbspfollowing&nbspcode?&nbsp<br><br>int[]&nbsparr&nbsp=&nbspnew&nbspint[5];<br>for(int&nbspi&nbsp=&nbsp0;&nbspi&nbsp&lt&nbsparr.length;&nbspi++){<br>&nbsp&nbsparr[i]&nbsp=&nbspi;<br>}<br><br>System.out.println(arr[5]);";
+questions[4].question="What&nbspis&nbspthe&nbspoutput&nbspof&nbspthe&nbspfollowing&nbspcode?&nbsp<br><p class='code'> int[]&nbsparr&nbsp=&nbspnew&nbspint[5];<br>for(int&nbspi&nbsp=&nbsp0;&nbspi&nbsp&lt&nbsparr.length;&nbspi++){<br>&nbsp&nbsparr[i]&nbsp=&nbspi;<br>}<br><br>System.out.println(arr[5]);</p>";
 questions[4].choices[0]="3";
 questions[4].choices[1]="4";
 questions[4].choices[2]="5";
@@ -106,17 +130,17 @@ function displayQuestion(){
 	qDiv.innerHTML += currentQuestion.question + "<br>";
 	if(currentQuestion.type == "MULT_ANS"){
 		qDiv.innerHTML += "<br>	(choose all that apply)<br>";
-		qDiv.innerHTML += "<hr size='3'>";
+
 		for(var i = 0; i < currentQuestion.choices.length; i++){
-			if(currentQuestion.userAnswers.includes(i)){
+				qDiv.innerHTML += "&nbsp;" + numToChar(i) + ":&nbsp;&nbsp;";
+		if(currentQuestion.userAnswers.includes(i)){
 				qDiv.innerHTML += "<input type='checkbox' checked></input>";	
 			}else{
 				qDiv.innerHTML += "<input type='checkbox'></input>";
 			}
 			
-			qDiv.innerHTML += numToChar(i) + "<br>";
-			qDiv.innerHTML += currentQuestion.choices[i] + "<br>";
-			qDiv.innerHTML += "<hr size='3'>";
+			qDiv.innerHTML += "&nbsp;&nbsp;"+currentQuestion.choices[i] + "<br>";
+
 		}
 		
 		if(quizComplete){
@@ -131,16 +155,17 @@ function displayQuestion(){
 		}
 
 	}else if(currentQuestion.type == "SING_ANS"){
-		qDiv.innerHTML += "<hr size='3'>";
+		
 		for(var i = 0; i < currentQuestion.choices.length; i++){
-			if(currentQuestion.userAnswers == i){
+			qDiv.innerHTML += numToChar(i) + ":&nbsp;&nbsp;";
+
+            if(currentQuestion.userAnswers == i){
 				qDiv.innerHTML += "<input type='radio' name='q"+currentQuestion.number+"' checked></input>";
 			}else{
 				qDiv.innerHTML += "<input type='radio' name='q"+currentQuestion.number+"'></input>";
 			}
-			qDiv.innerHTML += numToChar(i) + "<br>";
-			qDiv.innerHTML += currentQuestion.choices[i] + "<br>";
-			qDiv.innerHTML += "<hr size='3'>";
+			qDiv.innerHTML +=  "&nbsp;&nbsp;" + currentQuestion.choices[i] + "<br>";
+			
 		}
 
 		if(quizComplete){
@@ -165,6 +190,9 @@ function displayQuestion(){
 	if(currentQuestion.number != 1){
 		qDiv.innerHTML += "<button onclick='previousQuestion()'>Previous Question</button>";
 	}
+    if (currentQuestion.number >1 && currentQuestion.number < questions.length) {
+        qDiv.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;"
+    }
 	if(currentQuestion.number != questions.length){
 		qDiv.innerHTML += "<button onclick='nextQuestion()'>Next Question</button>";
 	}
