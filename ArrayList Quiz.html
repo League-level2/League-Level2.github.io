@@ -12,8 +12,13 @@
             }
             #nav {
                 margin-left:50px;    
-                
+                position: relative;
             }
+            #footer {
+                position: absolute;
+                bottom: -100;
+                width: 100%;
+            } 
             button {background-color:yellow; border-radius: 3px; font-size: 125%;
            }
         </style>
@@ -27,7 +32,9 @@
     <br></center>
 </div>
 <div id='quiz'></div>
-<div id='nav'></div>
+<div id='nav'>
+    <div id='footer'></div>
+</div>
 
 <script>
 
@@ -63,6 +70,8 @@ window.onload = function(){
 	}
 	navDiv.innerHTML += "<br><br>";
 	navDiv.innerHTML += "<button onclick='submitQuiz()'>Submit Quiz</button><br>";
+
+    addFooter();
 }
 
 function buildQuiz(){
