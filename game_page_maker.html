@@ -52,11 +52,11 @@
     <div id="imagePreviewDiv"></div>
     <hr size="3">
     <div class="section">
-            <select id="selectFontFamily" name="selectFontFamily" onchange="updateFontText();" class="section">
+            <select id="selectFontFamily" name="selectFontFamily" onchange="updateFontText();" class="section" >
                 <option> Tangerine </option>
                 <option> Roboto </option>
                 <option> Serif </option>
-                <option> Arial </option>
+                <option selected="selected"> Arial </option>
                 <option> Notable </option>
                 <option> Spirax </option>  
                 <option> Unlock </option>  
@@ -123,6 +123,11 @@
         <button id="submitButton" onclick="downloadFile();" class="section">
             Submit and Download
         </button>
+        <button id="saveButton" onclick="savePage();" class="section">
+            Save
+        </button>
+        <input id="savedFileInput" type="file" style="display:none;"></input>
+        <button id="loadButton" onclick="loadPage();" class="section">Load Page</button>
     </div>
                 
     <footer>
@@ -174,6 +179,8 @@
             greenSlider = document.getElementById('greenSlider');
             blueSlider = document.getElementById('blueSlider');
 
+            document.getElementById('fontText').style.fontFamily = "Arial";
+
             for(var i = 0; i < totalQuestions; i++){
                 questions.push(document.getElementById("ques" + (i + 1)));
             }
@@ -194,6 +201,253 @@
             }
             blueSlider.oninput = function(){
                 changeColor("blue");
+            }
+        }
+
+        function savePage(){
+            var fileName = prompt("Provide the name of the save file:");
+            fileName += ".l2pm";
+            
+            var fileText = "*<*GAMETITLE*>*\n"; 
+            fileText += titleDiv.value + '\n';
+            fileText += "*<*NAME*>*\n";
+            fileText += studentName.value + '\n';
+            fileText += "*<*LINK*>*\n";
+            fileText += downloadLink.value + '\n';
+
+            fileText += "*<*IMAGES*>*\n";
+            var imgs = imagePreviewDiv.getElementsByTagName("img");
+            for(var i = 0; i < imgs.length; i++){
+                fileText += imgs[i].src + '\n';   
+                fileText += "*<*ENDIMAGE*>*\n";      
+            }
+            fileText += "*<*ENDALLIMAGES*>*\n";
+
+            fileText += "*<*FONT*>*\n";
+            fileText += document.getElementById('fontText').style.fontFamily + '\n';
+            fileText += "*<*COLORS*>*\n";
+            fileText += redSlider.value + '\n';
+            fileText += greenSlider.value + '\n';
+            fileText += blueSlider.value + '\n';
+
+            fileText += "*<*QUESTIONS*>*\n";
+            for(var i = 0; i < questions.length; i++){
+                fileText += questions[i].value + '\n';
+                fileText += "*<*ENDQUESTION*>*\n";
+            }
+
+            var titles = customTopicsDiv.getElementsByTagName("input");
+            var discussions = customTopicsDiv.getElementsByTagName("textArea");
+            fileText += "*<*CUSTOMTOPICS*>*\n";
+            for(var i = 0; i < titles.length; i++){
+                fileText += "*<*TITLE*>*\n";
+                fileText += titles[i].value + '\n';
+                fileText += "*<*DISCUSSION*>*\n";
+                fileText += discussions[i].value + '\n';
+            }
+            fileText += "*#*EOF*#*"
+
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileText));
+            element.setAttribute('download', fileName);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        function loadPage(){
+            var text = "";
+            var inpt = document.getElementById('savedFileInput');
+            inpt.click();
+            inpt.onchange = function(e){
+                var reader = new FileReader();
+                reader.onload = function(){
+                    text = reader.result;
+                    var lines = [];
+                    var line = "";
+                    for(var i = 0; i < text.length; i++){
+                        var c = text[i];
+                        
+                        if(c == '\n'){
+                            lines.push(line);
+                            line = "";
+                        }else{
+                            line += c;
+                        }
+                    }
+                    lines.push(line);
+                    while(lines[0] != "*#*EOF*#*"){
+                        var cLine = lines.shift();
+                        switch(cLine){
+                            case "*<*GAMETITLE*>*":{
+                                titleDiv.value = lines.shift();
+                                break;
+                            }
+                            case "*<*NAME*>*":{
+                                studentName.value = lines.shift();
+                                break;
+                            }
+                            case "*<*LINK*>*":{
+                                downloadLink.value = lines.shift();
+                                break;
+                            }
+                            case "*<*IMAGES*>*":{
+                                imagePreviewDiv.innerHTML += "";
+                                var imgCtr = 0;
+                                while(lines[0] != "*<*ENDALLIMAGES*>*"){
+                                    while(lines[0] != "*<*ENDIMAGE*>*"){
+                                        imagePreviewDiv.innerHTML += "<img id='previewImage" + imgCtr + "' src='"+ lines.shift() + "' height='25%' title='click to remove' onclick='removeImage(" + imgCtr + ")'>";
+                                        imgCtr++;
+                                    }
+                                    lines.shift();
+                                }
+                                break;
+                            }
+                            case "*<*FONT*>*":{
+                                document.getElementById('fontText').style.fontFamily = lines.shift();
+                                break;
+                            }
+                            case "*<*COLORS*>*":{
+                                redSlider.value = lines.shift();
+                                greenSlider.value = lines.shift();
+                                blueSlider.value = lines.shift();
+                                colorSelectionDiv.style.backgroundColor = "rgb(" + redSlider.value + "," + greenSlider.value + "," + blueSlider.value + ")";
+                                break;
+                            }
+                            case "*<*QUESTIONS*>*":{
+                                var qCtr = 0;
+                                while(lines[0] != "*<*CUSTOMTOPICS*>*"){
+                                    
+                                    var str = "";
+                                    while(lines[0] != "*<*ENDQUESTION*>*"){
+                                        str += lines.shift() + '\n';
+                                    }
+                                    questions[qCtr].value = str;
+                                    qCtr++;
+                                    lines.shift();
+                                }
+                                break;
+                            }
+                            case "*<*CUSTOMTOPICS*>*":{
+                                var customTopicsDiv = document.getElementById("customTopicsDiv");
+                                var newTopicDiv;
+                                var totalAdditionalCatagories = 0;
+                                while(lines[0] != "*#*EOF*#*"){
+                                    switch(lines[0]){
+                                        case "*<*TITLE*>*":{
+                                            lines.shift();
+                                            //console.log(lines.shift());
+                                            newTopicDiv = document.createElement('div');
+                                            newTopicDiv.className = "section";
+                                            newTopicDiv.id = "newTopic" + totalAdditionalCatagories;
+                                            newTopicDiv.innerHTML += "<hr size='3'>";
+                                            newTopicDiv.innerHTML += "Topic: <input type='text' class='section' style='width:700px' value='"+lines.shift()+"'></input>";
+                                            newTopicDiv.innerHTML += "<button onclick='removeExtraTopic(" + totalAdditionalCatagories + ")'>X</button><br>"
+                                            customTopicsDiv.appendChild(newTopicDiv);
+                                            break;
+                                        }
+                                        case "*<*DISCUSSION*>*":{
+                                            lines.shift();
+                                            var str = "";
+                                            while(lines[0] != "*<*TITLE*>*" && lines[0] != "*#*EOF*#*"){
+                                                str += lines.shift() + '\n';
+                                            }
+                                            newTopicDiv.innerHTML += "Discussion: <textarea rows='10' cols='70' class='description'>" + str + "</textarea>";
+                                            newTopicDiv.innerHTML += "</div>";
+                                            totalAdditionalCatagories++;
+                                            break;
+                                        }
+                                        default:{
+                                            lines.shift();
+                                            break;
+                                        }
+                                    }
+                                }                                
+                                break;
+                            }
+                        }
+                    }
+
+                    // if(lines[0] != "8675309"){
+                    //     alert("ERROR! Incorrect file type");
+                    //     return;
+                    // }
+                    
+                    // lines.shift();
+                    // lines.shift();
+
+                    // if(lines[0] != breakString){
+                    //     titleDiv.value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     studentName.value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     downloadLink.value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // var imgCtr = 0;
+                    // while(lines[0] != breakString){
+                    //     imagePreviewDiv.innerHTML += "<img id='previewImage" + imgCtr + "' src='"+ lines[0] + "' height='25%' title='click to remove' onclick='removeImage(" + imgCtr + ")'>";
+                    //     lines.shift();
+                    //     imgCtr++;
+                    // }
+                    // lines.shift(); 
+                    // if(lines[0] != breakString){
+                    //     document.getElementById('fontText').style.fontFamily = lines.shift();
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     redSlider.value = lines.shift();
+                    //     greenSlider.value = lines.shift();
+                    //     blueSlider.value = lines.shift();
+                    //     colorSelectionDiv.style.backgroundColor = "rgb(" + redSlider.value + "," + greenSlider.value + "," + blueSlider.value + ")";
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     questions[0].value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     questions[1].value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     questions[2].value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     questions[3].value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     questions[4].value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // if(lines[0] != breakString){
+                    //     questions[5].value = lines.shift();
+                    // }
+                    // lines.shift();
+                    // totalAdditionalCatagories = 0;
+                    // while(lines[0] != "*#*EOF*#*"){
+                    //     var customTopicsDiv = document.getElementById("customTopicsDiv");
+                    //     var newTopicDiv = document.createElement('div');
+                    //     newTopicDiv.className = "section";
+                    //     newTopicDiv.id = "newTopic" + totalAdditionalCatagories;
+                    //     newTopicDiv.innerHTML += "<hr size='3'>";
+                    //     newTopicDiv.innerHTML += "Topic: <input type='text' class='section' style='width:700px' value='"+lines.shift()+"'></input>";
+                    //     newTopicDiv.innerHTML += "<button onclick='removeExtraTopic(" + totalAdditionalCatagories + ")'>X</button><br>"
+                    //     newTopicDiv.innerHTML += "Discussion: <textarea rows='10' cols='70' class='description'>" + lines.shift() + "</textarea>";
+                    //     newTopicDiv.innerHTML += "</div>";
+                    //     customTopicsDiv.appendChild(newTopicDiv);
+                    //     totalAdditionalCatagories++;
+                    // }
+
+                };
+                reader.readAsText(inpt.files[0]);
             }
         }
 
@@ -433,7 +687,7 @@
         function updateFontText(){
             var selector = document.getElementById('selectFontFamily');
             var family = selector.options[selector.selectedIndex].value;
-            var text = document.getElementById('fontText')
+            var text = document.getElementById('fontText');
             text.style.fontFamily = family;        
         }
 
