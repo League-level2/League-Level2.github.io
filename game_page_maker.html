@@ -129,6 +129,8 @@
         <input id="savedFileInput" type="file" style="display:none;"></input>
         <button id="loadButton" onclick="loadPage();" class="section">Load Page</button>
     </div>
+    <br>
+    If the buttons are not working, try opening this page in a new private or incognito window.<br>
                 
     <footer>
         <hr size="3">
@@ -206,6 +208,9 @@
 
         function savePage(){
             var fileName = prompt("Provide the name of the save file:");
+            if(fileName.length == 0){
+                return;
+            }
             fileName += ".l2pm";
             
             var fileText = "*<*GAMETITLE*>*\n"; 
@@ -337,7 +342,6 @@
                                     switch(lines[0]){
                                         case "*<*TITLE*>*":{
                                             lines.shift();
-                                            //console.log(lines.shift());
                                             newTopicDiv = document.createElement('div');
                                             newTopicDiv.className = "section";
                                             newTopicDiv.id = "newTopic" + totalAdditionalCatagories;
@@ -368,84 +372,6 @@
                             }
                         }
                     }
-
-                    // if(lines[0] != "8675309"){
-                    //     alert("ERROR! Incorrect file type");
-                    //     return;
-                    // }
-                    
-                    // lines.shift();
-                    // lines.shift();
-
-                    // if(lines[0] != breakString){
-                    //     titleDiv.value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     studentName.value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     downloadLink.value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // var imgCtr = 0;
-                    // while(lines[0] != breakString){
-                    //     imagePreviewDiv.innerHTML += "<img id='previewImage" + imgCtr + "' src='"+ lines[0] + "' height='25%' title='click to remove' onclick='removeImage(" + imgCtr + ")'>";
-                    //     lines.shift();
-                    //     imgCtr++;
-                    // }
-                    // lines.shift(); 
-                    // if(lines[0] != breakString){
-                    //     document.getElementById('fontText').style.fontFamily = lines.shift();
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     redSlider.value = lines.shift();
-                    //     greenSlider.value = lines.shift();
-                    //     blueSlider.value = lines.shift();
-                    //     colorSelectionDiv.style.backgroundColor = "rgb(" + redSlider.value + "," + greenSlider.value + "," + blueSlider.value + ")";
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     questions[0].value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     questions[1].value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     questions[2].value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     questions[3].value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     questions[4].value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // if(lines[0] != breakString){
-                    //     questions[5].value = lines.shift();
-                    // }
-                    // lines.shift();
-                    // totalAdditionalCatagories = 0;
-                    // while(lines[0] != "*#*EOF*#*"){
-                    //     var customTopicsDiv = document.getElementById("customTopicsDiv");
-                    //     var newTopicDiv = document.createElement('div');
-                    //     newTopicDiv.className = "section";
-                    //     newTopicDiv.id = "newTopic" + totalAdditionalCatagories;
-                    //     newTopicDiv.innerHTML += "<hr size='3'>";
-                    //     newTopicDiv.innerHTML += "Topic: <input type='text' class='section' style='width:700px' value='"+lines.shift()+"'></input>";
-                    //     newTopicDiv.innerHTML += "<button onclick='removeExtraTopic(" + totalAdditionalCatagories + ")'>X</button><br>"
-                    //     newTopicDiv.innerHTML += "Discussion: <textarea rows='10' cols='70' class='description'>" + lines.shift() + "</textarea>";
-                    //     newTopicDiv.innerHTML += "</div>";
-                    //     customTopicsDiv.appendChild(newTopicDiv);
-                    //     totalAdditionalCatagories++;
-                    // }
-
                 };
                 reader.readAsText(inpt.files[0]);
             }
