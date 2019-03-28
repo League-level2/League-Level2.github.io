@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<title>League Invaders - Game Loop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://league-central.github.io/curriculum/style/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<script src="https://league-central.github.io/curriculum/script/headerAndFooter.js"></script>
+<body>
+        <div id ="wrap">
+            <div id ="main">
+                <div id = "moduleIndex">   
+
+<h1>Game Loop</h1>
+<h2>GamePanel and Timer</h2>
+ 
+<br>                    
+<p class="normal">
+1. Create a new class called <code>GamePanel</code>. This class will draw the game in the game's window (<code>JFrame</code>).<br>
+<br>
+2.  Add <code>extends JPanel</code> to the end of your class declaration (see below). This makes <code>GamePanel</code> a subclass of <code>JPanel</code> and allows it to inherit its properties. By creating our own class, we can customize the panel's code to better suit our game.<br>
+</p>
+<pre>public class GamePanel extends JPanel{ ... }</pre><br>
+
+<p class="normal">
+3. <u>In the <code>LeagueInvaders</code> class</u>, add a member variable for a <code>GamePanel</code> object. Initialize it in the <code>LeagueInvaders</code> constructor. At the top of the setup() method, add the <code>GamePanel</code> to your <code>JFrame</code>.                                    
+<br><br>
+4. <u>Return to the <code>GamePanel</code> class</u>Add a <code>Timer</code> member variable. This is a new class that we haven't used yet. When importing the <code>Timer</code> code, make sure you import the class that reads <code>javax.swing.Timer</code>. This is the game timer that will be used to control the frame rate (or speed) of the game.<br><br>
+      
+4. The timer is going to use the <code>ActionListener</code> interface to make actions  happen when it expires. Make your class implement the <code>ActionListener</code> interface as shown below:<br>
+
+<pre>public class GamePanel extends JPanel implements ActionListener
+{ ... }</pre>
+<br>
+<p class="normal">Add the unimplemented method (Eclipse can help). You should now have an <code>actionPerformed()</code> method in your class.<br>
+<br>
+
+5. Inside the <code>actionPerformed()</code> method, add a line of code to print a message to the console. (This won't run until you get the timer started).
+<br><br>
+
+6.In the <code>GamePanel</code> constructor, initialize its timer member variable. The constructor of the Timer class takes two parameters. The first parameter is an int for how fast your want the timer to repeat. <u>This is in milliseconds</u> so 1000 is equal to 1 second. We want the game to run at <u>60 frames per second</u>. So the first parameter will be 1000 / 60. The second parameter takes a reference to an ActionListener object. Since we implemented it in the <code>GamePanel</code>, we can put <font color="red">this</font> for the second parameter (see below).<br></p>
+                    
+    <pre>timer = new Timer(1000/60,this);</pre>
+
+<br><p class="normal">
+7. Create a void method called <code>startGame()</code> and add code to start the timer as follows:<br></p>
+
+    <pre>timer.start();</pre>
+
+<br><p class="normal">
+8. Run your program. Does your <code>actionPerformed()</code> message show up repeatedly in the console?</p>           
+
+                </div></div></div>                   
+<div id="footer">
+<script>addFooter();</script>
+</div>
+   
+</body></html>
