@@ -18,7 +18,7 @@
  
 <br>                    
 <p class="normal">
-1. The game will have 3 primary states: MENU, GAME, and END. These are repesented by 3 <code>final int</code> variables that you must create in the <code>GamePanel</code> class. The variable names are captialized since their values will not change as follows:</p>
+1. The game will have 3 states: MENU, GAME, and END. These are repesented by <code>final int</code> variables that you must create in the <code>GamePanel</code> class. Their names are captialized since their values will not change:</p>
 <pre>
     final int MENU = 0;
     final int GAME = 1;
@@ -26,7 +26,7 @@
 <br>  
                     
 <p class="normal">    
-2. The game will keep track of which state it is in, via an <code>int</code> variable called currentState. Declare and initialize this variable as follows:</p>
+    2. The game will keep track of which state it is in, via an <code>int</code> variable called <code>currentState</code>. Declare and initialize this variable as follows:</p>
 <pre>
     int currentState = MENU;</pre>
 <br>    
@@ -34,17 +34,17 @@
 <p class="normal"> 
 3. Create 3 void methods for updating the game in each state:</p>
 <pre>
- updateMenuState()
- updateGameState()
- updateEndState()</pre>
+ updateMenuState() {  }
+ updateGameState() {  }
+ updateEndState()  {  }</pre>
 <br>   
                     
 <p class="normal">      
 4. Create 3 void methods for drawing the game in each state. Note: these methods need a Graphics parameter because they will draw objects onto the panel's Graphics (like the paintComponent method).</p>
 <pre>
- drawMenuState(Graphics g)
- drawGameState(Graphics g)
- drawEndState(Graphics g)</pre>
+ drawMenuState(Graphics g) {  }
+ drawGameState(Graphics g) {  }
+ drawEndState(Graphics g)  {  }</pre>
 <br>
 
 <p class="normal">      
@@ -52,19 +52,40 @@
 
  <pre>
 if(currentState == MENU){
-        updateMenuState();
+    updateMenuState();
 }else if(currentState == GAME){
-        updateGameState();
+    updateGameState();
 }else if(currentState == END){
-        updateEndState();
+    updateEndState();
 }</pre>      
-
+<br>
 <p class="normal">           
-4. In the <code>actionPerformed()</code> method delete your syso command. Call <code>repaint()</code>; This will redraw the panel.
+6. In the <code>paintComponent()</code> method, create if/eles statements as in step 5, but now call the draw methods you created in step 4. Make sure you pass the Graphics object to each draw method.
 <br><br>
-
-5. Run the program. Do you see a square appear in your window? Do not continue until you do. Ask your teacher for help if needed.
+<p class="normal">
+7. In the <code>drawMenuState()</code> method, fill the game window with a blue rectangle using the following code:</p>
+<pre>
+g.setColor(Color.BLUE);
+g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);</pre>  
+<br>
+<p class="normal">
+Similarly, fill the game window with black in the <code>drawGameState()</code> method and a red in the <code>drawEndState()</code>method.</p>                    
+                    
+<p class="normal">
+8. The game will change states each time the ENTER key is pressed. This means the <code>GamePanel</code> class must implement the <code>KeyListener</code> interface (and all its unimplemented methods). The GamePanel class should now look like this:</p>                    
+<pre>
+public class GamePanel extends JPanel 
+                    implements ActionListener, KeyListener{  }
+</pre>
+<br>>
+ <p class="normal">
+     9. In the <code>keyPressed()</code> method, check if the ENTER key is pressed. If ENTER is pressed, we want the game to change to the next state as follows:
 </p>
+<pre>
+if (currentState == MENU) {
+
+}
+</pre>
                 </div></div></div>                   
 <div id="footer">
 <script>addFooter();</script>
