@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<title>League Invaders - Drawing Shapes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://league-central.github.io/curriculum/style/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<script src="https://league-central.github.io/curriculum/script/headerAndFooter.js"></script>
+<body>
+        <div id ="wrap">
+            <div id ="main">
+                <div id = "moduleIndex">   
+
+<h1>Game Controls</h1>
+<h2>Enter Key</h2>
+ 
+<br>                    
+ <br>                   
+<p class="normal">
+1. The game will change states each time the ENTER key is pressed. This means the <code>GamePanel</code> class must implement the <code>KeyListener</code> interface (and all its unimplemented methods). The GamePanel class should now look like this:</p>                    
+<pre>
+public class GamePanel extends JPanel 
+                    implements ActionListener, KeyListener{  }
+</pre>
+                    
+<br>
+ <p class="normal">
+     2. In the <code>keyPressed()</code> method, if ENTER is pressed, we want the game to change to the next state as follows:
+</p>
+<pre>
+if (currentState == END) {
+    currentState = MENU;
+} else {
+    currentState++;
+}
+</pre>
+                    
+<br>                    
+<p class="normal">
+    3.   In the <code>LeagueInvaders</code> class. Add a <code>KeyListener</code> to your <code>JFrame</code>. The <code>GamePanel</code> object is the listener, so the code might look something like this:</p>               
+<pre>
+frame.addKeyListener(panel);
+</pre>                    
+     <h3><u>TESTING</u></h3>
+ <p class="normal">                   
+    4. Run your program. Every time the ENTER key is pressed, you should see the game window change colors (blue, black, red, blue, black, red, etc.) Do not continue until you have this working.
+                    
+                   </p>                         
+
+
+                </div></div></div>                   
+<div id="footer">
+<script>addFooter();</script>
+</div>
+   
+</body></html>
