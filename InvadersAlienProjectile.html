@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<title>League Invaders - Game Objects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://league-central.github.io/curriculum/style/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<script src="https://league-central.github.io/curriculum/script/headerAndFooter.js"></script>
+<body>
+        <div id ="wrap">
+            <div id ="main">
+                <div id = "moduleIndex">   
+
+<h1>Alien and Projectile</h1>
+            
+<br>                        
+<p class="normal"> 
+1. Create a Alien class that extends the GameObject class.</p>
+       
+<p class="normal">      
+2. Add a constructor for this class that takes parameters to initialize all of the inherited GameObject member variables in the same way as the Rocketship clas.            
+               
+<br>
+<p class="normal">           
+    6. In the <code>Alien</code> class, create 2 empty void methods, <code>update()</code> and <code>draw()</code>. The draw method takes a parameter that is a <code>Graphics</code> object (g). For now we will draw a yellow square to represent the rocketship but putting the following code in its <code>draw()</code> method:</p>
+ <pre>
+        g.setColor(Color.BLUE);
+        g.fillRect(x, y, width, height);</pre>
+<br>
+
+<br>
+<p class="normal">
+5. In the <code>GamePanel</code>, create a new member variable to hold a Rocketship object that has x,y of 250,700 and width/height of 50,50.</p>
+
+ <br>
+<p class="normal">   
+    6. In the drawGameState() method, add code to call the rocketship's draw method (pass it the Graphics object).</p>  
+    
+     <h3><u>TESTING</u></h3>
+ <p class="normal">                   
+Run the program. Press the Enter key to put the game into the GAME state (black background). Does the blue rocketship (square) appear at the bottom?
+                    </p>                         
+<br>
+
+                </div></div></div>                   
+<div id="footer">
+<script>addFooter();</script>
+</div>
+   
+</body></html>
