@@ -27,16 +27,25 @@ public class GamePanel extends JPanel
                     
 <br>
  <p class="normal">
-     2. In the <code>keyPressed()</code> method, if ENTER is pressed, we want the game to change to the next state as follows:
+     2. In the <code>keyPressed()</code> method, if ENTER is pressed, we want the game to change to the next state as shown below:
 </p>
 <pre>
-if (currentState == END) {
-    currentState = MENU;
-} else {
-    currentState++;
-}
+if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+    if (currentState == END) {
+        currentState = MENU;
+    } else {
+        currentState++;
+    }
+}   
 </pre>
-                    
+<br>                    
+<p class="normal">
+    We also want to be notified if any of the arrow keys are pressed, since they will eventually be controlling the movement of our game character. For now, just put print statements in to verify that the arrow keys are "working". See below for an example of how this would work for the "up arrow" key. Add code for all 4 arrow keys on the keyboard.</p>
+<pre>
+if (e.getKeyCode()==KeyEvent.VK_UP) {
+    System.out.println("UP ARROW");
+}
+</pre>    
 <br>                    
 <p class="normal">
     3.   In the <code>LeagueInvaders</code> class. Add a <code>KeyListener</code> to your <code>JFrame</code>. The <code>GamePanel</code> object is the listener, so the code might look something like this:</p>               
