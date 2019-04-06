@@ -40,7 +40,7 @@ if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 </pre>
 <br>                    
 <p class="normal">
-    3. We also want to be notified if any of the arrow keys are pressed, since they will eventually be controlling the movement of our game character. For now, just add print statements to verify that the arrow keys are "working". See below for an example of how this would work for the "up arrow" key. 
+    3. We also want to be notified if any of the arrow keys are pressed, since they will eventually be controlling the movement of our game character. For now, just add print statements to verify that the arrow keys are "working". See below for an example of how this would work for the "up arrow" key. NOTE: Only check the arrow keys when the game is in GAME state.  
 <pre>
 if (e.getKeyCode()==KeyEvent.VK_UP) {
     System.out.println("UP");

@@ -55,10 +55,13 @@ addAlien(new Alien(new Random().nextInt(LeagueInvaders.WIDTH), 0, 50, 50));</pre
     3. We only want the aliens to be created while the game is running, so create a new method <code>startGame()</code> to start the alienSpawn timer. This method must be called when the game state changes from MENU to GAME. Also add code to stop this timer when the game state changes from GAME to END.</p>
     <br>
 
+<p class="normal"> 
+    4. Add code to create projectiles when the Space Bar is pressed in the GAME state. The ObjectManger has an addProjectile() method for this. Make your projectiles start from the middle of the top of the game's Rocketship.</p>
+    <br>
 
      <h3><u>TESTING</u></h3>
  <p class="normal">                   
- 6. Run the program. Is the frame now filled by a blue rectangle. Is "action" appearing repeatedly on the console? If not, get this part working before you move on to the next step.
+5. Run the program. In the game state (black background) yellow alien squares should be falling from the top of the frame at a rate of about 1 per second. When you press the space bar, do red projectiles go up from the rocket?
                     </p>     
                 </div></div></div>                   
 <div id="footer">
