@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-<title>League Invaders - Object Manager</title>
+<title>League Invaders - Collision</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://league-central.github.io/curriculum/style/style.css">
@@ -13,50 +13,43 @@
             <div id ="main">
                 <div id = "moduleIndex">   
 
-<h1>Model Management</h1>
+<h1>Collision Management</h1>
  
 <br>                    
 <p class="normal">
-When projectiles collide with aliens, both objects become  </p>
+If a projectile collides with an alien, both objects are marked inactive. If an alien collides with the rocketship, both are marked inactive. Inactive objects are removed from the game so they are no longer drawn. </p>
                     
                     <h2>GameObject</h2>
                     
 <p class="normal">    
-    1. Create a new class called ObjectManager and add a rocket member variable<br> <font color="red"> BUT DO NOT INITIALIZE IT</font></p>    
+    1. In your <code>GameObject</code> class, create an object of the <code>Rectangle</code> class in your member variables. Call this object <code>collisionBox</code> and DO NOT INITIALIZE IT YET.</p>    
 <br>                      
 <p class="normal">    
-    2. Make a constructor for this class that takes a Rocketship parameter and use it to initialize the member variable created above.</p>                    
+    2. Initialize the collision box in the constructor. It takes four parameters. Use its x, y, width, and height variables.</p>                    
 <br>
 <p class="normal">
-    3. Add another member variable <code>projectiles</code> that will hold an ArrayList of Projectile objects. Also add a void method <code>addProjectile()</code> with a parameter that is a <code>Projectile</code>object. This method needs to add the projectile to the ArrayList.<br>
+    3. In the update method, update the collision box with the x, y, width, and height variables so it keeps moving with the GameObject (Alien, Projectile, or Rocketship).
+<pre>
+        collisionBox.setBounds(x, y, width, height);</pre><br>
+                    
+                    <h2>ObjectManager</h2>
 <br>
 <p class="normal"> 
-    4. Add another member variable <code>aliens</code> that will hold an ArrayList of Alien objects. Also create an <code>addAlien()</code> method similar to the method above for the projectiles.</p>
-<br>
-<p class="normal"> 
-    5. Create a method called <code>update()</code> that calls the rocket's update method. Then, iterate through all the aliens and call the update method on each alien. After updating, test the alien's x and y values. If they are outside the game window (use LeagueInvaders.WIDTH and LeagueInvaders.HEIGHT), set the alien's isAlive variable to false. Note: Iteration will require the use of a for loop of some kind! Next do the same thing for all the projectiles.</p>                  
+    4. Create a method called checkCollision. Add code that iterates through every alien and checks if it collides with any &quot;enemy&quot; (Rocket or Projectile). If they collide, set the Alien AND &quot;enemy's&quot; isActive variables to false. Collision can be checked using the Rectangle intersects() method - see example below:<br>
+    
+<pre>rocket.collisionBox.intersects(alien.collisionBox)</pre>
+                    </p>                  
 <br>                              
-<p class="normal"> 
-    6. Create a method called <code>draw()</code> that has a Graphics parameter. Add code to call the rocket's draw method (pass it the graphics object). Then iterate through all the aliens and call the draw method on each. Now do the same thing for all the projectiles.</p>
-<br>                              
-<p class="normal"> 
-    7. Create a method called <code>purgeObjects()</code>. This method needs to iterate through all the aliens and projectiles and remove any that are marked as not active. Remember: You cannot use a for each loop when you are removing items from an ArrayList.</p>
     
                                     <h2>GamePanel</h2>     
 <p class="normal">      
-    7.  Inside the <code>GamePanel</code> class, create and initialize a member varable for an <code>ObjectManager</code> object. Use the panel's rocketship as the parameter for the ObjectManager constructor.</p>                   
- <br>
-<p class="normal">           
-    8.  In the <code>updateGameState</code> method, delete the call to the rocket's update method and replace it with a call to the objectManager's update method.</p>
-<br>
-<p class="normal">
-    9. In the <code>drawGameState</code> method, delete the call to the rocket's draw method and replace it with a call to the objectManager's draw method.</p>
+    5. In the updateGameState method, use your ObjectManager object to call the checkCollision() and the purgeObjects() methods.</p>                   
  <br>
  
     
      <h3><u>TESTING</u></h3>
  <p class="normal">                   
-10. Run the program. You should see no change from the previous test. That is, you should still see a blue rocket when in the GAME state, and your background color should still change when you press the Enter key.
+6. Run the program. Do the aliens and ship disappear when they are supposed to?
 </p>                         
 <br>
 
