@@ -37,24 +37,26 @@ Add the unimplemented method (Eclipse can help). You should now have an <code>ac
     Each alien should have a random location across the top of the game, so in this method add the following:</p>                    
                     
 <pre>
-addAlien(new Alien(new Random().nextInt(LeagueInvaders.WIDTH), 0, 50, 50));</pre>    
+addAlien(new Alien(new Random().nextInt(LeagueInvaders.WIDTH),0,50,50));</pre>    
  <br>                    
                     
                                     <h2>GamePanel</h2>                         
                    
 <p class="normal">
 
-    1.  In the <code>GamePanel</code> class add another <code>Timer</code> member variable called <code>alienSpawn</code>. You should already have imported <code>javax.swing.Timer</code> when you set up the main game timer.<br></p>
+    1.  In the <code>GamePanel</code> class add another <code>Timer</code> member variable called <code>alienSpawn</code>. You should already have imported <code>javax.swing.Timer</code> when you set up the main game timer. DO NOT INITIALIZE THIS VARIABLE YET.<br></p>
 <br>                    
-<p class="normal">     
-2. In the <code>GamePanel</code> constructor, initialize the <code>alienSpawn</code> member variable. The constructor of the Timer class takes two parameters. The first parameter is an int for how fast your want the timer to repeat in milliseconds. Let's start by having one alien spawn every second. So the first parameter will be 1000. The second parameter takes a reference to an ActionListener object. We are going to implement the alienSpawn code in the <code>ObjectManager</code>, so we put objectManager as the second parameter.<br></p>                   
-    <pre>
+<p class="normal">
+    2. We only want the aliens to be created while the game is running, so create a new method <code>startGame()</code>. This method should initialize the <code>alienSpawn</code> member variable and start this timer. The constructor of the Timer class takes two parameters. The first parameter is an int for how fast your want the timer to repeat in milliseconds. Let's start by having one alien spawn every second. So the first parameter will be 1000. The second parameter takes a reference to an ActionListener object. We are going to implement the alienSpawn code in the <code>ObjectManager</code>, so we put objectManager as the second parameter (see below).<br>
+    
+     <pre>
     alienSpawn = new Timer(1000 , objectManager);</pre>
 <br>                    
-<p class="normal"> 
-    3. We only want the aliens to be created while the game is running, so create a new method <code>startGame()</code> to start the alienSpawn timer. This method must be called when the game state changes from MENU to GAME. Also add code to stop this timer when the game state changes from GAME to END.</p>
+<p class="normal">     
+                    
+    3 Call the startGame() method when the game state changes from MENU to GAME (in the keyPressed() method). Also add code to stop this timer when the game state changes from GAME to END.</p>
     <br>
-
+                         
 <p class="normal"> 
     4. Add code to create projectiles when the Space Bar is pressed in the GAME state. The ObjectManger has an addProjectile() method for this. Make your projectiles start from the middle of the top of the game's Rocketship.</p>
     <br>
