@@ -30,7 +30,7 @@
 <br>                    
 <p class="normal">
 
-1. <u>In the <code>GamePanel</code> class</u> add a <code>Timer</code> member variable. This is a new class that we haven't used yet. When importing the <code>Timer</code> code, make sure you import the class that reads <code>javax.swing.Timer</code>.<br><br>
+1. <u>In the <code>GamePanel</code> class</u> add a <code>Timer</code> member variable called frameDraw. This is a new class that we haven't used yet. When importing the <code>Timer</code> code, make sure you import the class that reads <code>javax.swing.Timer</code>.<br><br>
       
 2. The timer is going to use the <code>ActionListener</code> interface to make actions  happen when it expires. Make your class implement the <code>ActionListener</code> interface as shown below:<br>
 
@@ -43,8 +43,8 @@
 3. In the <code>GamePanel</code> constructor, initialize its timer member variable. The constructor of the Timer class takes two parameters. The first parameter is an int for how fast your want the timer to repeat. <u>This is in milliseconds</u> so 1000 is equal to 1 second. We want the game to run at <u>60 frames per second</u>. So the first parameter will be 1000 / 60. The second parameter takes a reference to an ActionListener object. Since we implemented it in the <code>GamePanel</code>, we can put <font color="red">this</font> for the second parameter. After you have initialized the variable, start the timer (see below).<br></p>
                     
     <pre>
-    timer = new Timer(1000/60,this);
-    timer.start();</pre>
+    frameDraw = new Timer(1000/60,this);
+    frameDraw.start();</pre>
 
   
     <br>
